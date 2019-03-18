@@ -1,0 +1,28 @@
+language: php
+php:
+    - 7.1
+    - 7.2
+    - 7.3
+
+matrix:
+  include:
+    - php: 7.1
+      env: DEPENDENCIES="--prefer-lowest"
+    - php: 7.3
+      env: CHECK_CODESTYLE=1
+      before_install: phpenv config-rm xdebug.ini
+      script:
+        - composer analyze
+      after_success: ~
+
+install:
+  - travis_retry composer self-update && composer --version
+  - travis_retry composer update --no-interaction $DEPENDENCIES
+  - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+  - chmod +x php-coveralls.phar
+
+script:
+    - composer tests-ci
+
+after_success:
+    - travis_retry php php-coveralls.phar -v
