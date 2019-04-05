@@ -3,23 +3,38 @@ php:
     - 7.1
     - 7.2
     - 7.3
+addons:
+    apt:
+        packages:
+        - libssl-dev
+        - autoconf
 
 matrix:
-  include:
+    include:
     - php: 7.1
       env: DEPENDENCIES="--prefer-lowest"
     - php: 7.3
       env: CHECK_CODESTYLE=1
       before_install: phpenv config-rm xdebug.ini
       script:
-        - composer analyze
+      - composer analyze
       after_success: ~
 
 install:
-  - travis_retry composer self-update && composer --version
-  - travis_retry composer update --no-interaction $DEPENDENCIES
-  - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-  - chmod +x php-coveralls.phar
+    - travis_retry composer self-update && composer --version
+    - travis_retry composer update --no-interaction $DEPENDENCIES
+    - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+    - chmod +x php-coveralls.phar
+
+before_script:
+    - sudo mkdir -p /usr/local/aerospike/lua
+    - sudo chmod 644 /usr/local/aerospike/lua
+    - cd vendor/aerospike/aerospike-client-php/src/
+    - ./build.sh >/dev/null
+    - make install
+    - ../.travis/edit-php-ini.sh
+    - cp ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini tmp-php.ini
+    - cd $TRAVIS_BUILD_DIR
 
 script:
     - composer tests-ci
