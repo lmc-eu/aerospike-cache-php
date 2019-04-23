@@ -2,8 +2,8 @@ Aerospike cache adapters for PHP
 ===================
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/lmc/aerospike-cache-php.svg)](https://packagist.org/packages/lmc/aerospike-cache-php)
-[![Build Status](https://travis-ci.org/lmc/aerospike-cache-php.svg?branch=master)](https://travis-ci.org/lmc/aerospike-cache-php)
-[![Coverage Status](https://coveralls.io/repos/github/lmc/aerospike-cache-php/badge.svg?branch=master)](https://coveralls.io/github/lmc/aerospike-cache-php?branch=master)
+[![Build Status](https://travis-ci.com/lmc-eu/aerospike-cache-php.svg?branch=master)](https://travis-ci.com/lmc-eu/aerospike-cache-php)
+[![Coverage Status](https://coveralls.io/repos/github/lmc-eu/aerospike-cache-php/badge.svg?branch=master)](https://coveralls.io/github/lmc-eu/aerospike-cache-php?branch=master)
 
 This component provides a PSR-6 implementation of Aerospike for adding cache to your applications. 
 
