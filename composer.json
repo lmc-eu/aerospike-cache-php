@@ -1,6 +1,7 @@
 {
-    "name": "lmc/aerospike-cache-php",
-    "description": "{DESCRIPTION}",
+    "name": "lmc/aerospike-cache",
+    "description": "Aerospike PHP cache adapter for Symfony/Cache (PSR-6 and PSR-16) and Doctrine/Cache",
+    "keywords": ["cache", "caching", "psr", "psr-6", "psr6", "psr-16", "psr16", "aerospike"],
     "type": "library",
     "license": "MIT",
     "autoload": {
