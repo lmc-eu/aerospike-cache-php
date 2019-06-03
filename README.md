@@ -1,7 +1,7 @@
 Aerospike cache adapters for PHP
 ===================
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/lmc/aerospike-cache-php.svg)](https://packagist.org/packages/lmc/aerospike-cache-php)
+[![Latest Stable Version](https://img.shields.io/packagist/v/lmc/aerospike-cache-php.svg)](https://packagist.org/packages/lmc/aerospike-cache)
 [![Build Status](https://travis-ci.com/lmc-eu/aerospike-cache-php.svg?branch=master)](https://travis-ci.com/lmc-eu/aerospike-cache-php)
 [![Coverage Status](https://coveralls.io/repos/github/lmc-eu/aerospike-cache-php/badge.svg?branch=master)](https://coveralls.io/github/lmc-eu/aerospike-cache-php?branch=master)
 
