@@ -17,7 +17,7 @@
     "require": {
         "php": "^7.1",
         "aerospike/aerospike-client-php": "^7.3.0",
-        "symfony/cache": "^4.2"
+        "symfony/cache": "^4.3"
     },
     "require-dev": {
         "doctrine/cache": "^1.8",
