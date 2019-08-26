@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Lmc\AerospikeCache;
 
@@ -8,9 +7,10 @@ use Psr\Log\LoggerInterface;
 
 class AerospikeCacheTest extends AbstractTestCase
 {
+    private const FAILED_TO_FETCH_KEY_WARNING = 'Failed to fetch key "{key}": Invalid argument supplied for foreach()';
+
     /** @var \Aerospike|MockObject $aerospikeMock */
     private $aerospikeMock;
-
     /** @var AerospikeCache */
     private $aerospikeCache;
 
@@ -126,7 +126,7 @@ class AerospikeCacheTest extends AbstractTestCase
                     ],
                 ],
                 [
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'foo'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'foo'],
                 ],
             ],
             'save successfully more items' => [
@@ -148,9 +148,9 @@ class AerospikeCacheTest extends AbstractTestCase
                     ],
                 ],
                 [
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'foo'],
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'bar'],
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'boo'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'foo'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'bar'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'boo'],
                 ],
             ],
             'save items with errors' => [
@@ -172,10 +172,10 @@ class AerospikeCacheTest extends AbstractTestCase
                     ],
                 ],
                 [
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'foo'],
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'bar'],
-                    ['warning' => 'Failed to save key "{key}" ({type})', 'key' => 'bar'],
-                    ['warning' => 'Failed to fetch key "{key}"', 'key' => 'boo'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'foo'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'bar'],
+                    ['warning' => 'Failed to save key "{key}" of type string.', 'key' => 'bar'],
+                    ['warning' => self::FAILED_TO_FETCH_KEY_WARNING, 'key' => 'boo'],
                 ],
             ],
         ];
