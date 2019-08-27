@@ -1,8 +1,10 @@
 language: php
 php:
-    - 7.1
-    - 7.2
-    - 7.3
+    - '7.1'
+    - '7.2'
+    - '7.3'
+    - '7.4snapshot'
+
 addons:
     apt:
         packages:
@@ -11,9 +13,11 @@ addons:
 
 matrix:
     include:
-    - php: 7.1
+    - name: 'Lowest dependencies'
+      php: '7.1'
       env: DEPENDENCIES="--prefer-lowest"
-    - php: 7.3
+    - name: 'Static analysis and codestyle check'
+      php: '7.3'
       env: CHECK_CODESTYLE=1
       before_install: phpenv config-rm xdebug.ini
       script:
