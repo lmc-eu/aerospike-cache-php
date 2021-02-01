@@ -17,6 +17,7 @@ class AerospikeCache extends AbstractAdapter
     /** @var string */
     private $set;
 
+
     /**
      * @param string $aerospikeNamespace Namespace is a top level container for data in Aerospike - something similar to database name
      * @param string $cacheNamespace The string prefixed to the keys of the items stored in this cache
@@ -36,7 +37,7 @@ class AerospikeCache extends AbstractAdapter
 
     protected function doFetch(array $ids): array
     {
-        $result = [];
+        $result = $records = [];
 
         $keys = $this->initializeKeysForAerospike($ids);
 
@@ -44,7 +45,12 @@ class AerospikeCache extends AbstractAdapter
 
         foreach ($records as $record) {
             if ($record['metadata'] !== null) {
-                $result[$record['key']['key']] = $record['bins'][self::WRAPPER_NAME] ?? null;
+                $decodedValue = null;
+                if (isset($record['bins'][self::WRAPPER_NAME])) {
+                    $decodedValue = unserialize($record['bins'][self::WRAPPER_NAME]);
+                }
+
+                $result[$record['key']['key']] = $decodedValue;
             }
         }
 
@@ -113,13 +119,13 @@ class AerospikeCache extends AbstractAdapter
     {
         $failed = [];
         foreach ($values as $key => $value) {
-            $data = [self::WRAPPER_NAME => $value];
             $statusCode = $this->aerospike->put(
                 $this->createKey($key),
-                $data,
+                [self::WRAPPER_NAME => serialize($value)],
                 $lifetime,
                 [\Aerospike::OPT_POLICY_KEY => \Aerospike::POLICY_KEY_SEND]
             );
+
             if ($statusCode !== \Aerospike::OK) {
                 $failed[] = $key;
             }

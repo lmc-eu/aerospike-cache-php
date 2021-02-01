@@ -16,7 +16,7 @@ composer require lmc/aerospike-cache
 ## Usage
 ```php
 $aerospike = new \Aerospike(['hosts' => [['addr' => '127.0.0.1', 'port' => 3000]]]);
-$aerospikeCache = new AerospikeCache($aerospike, 'aerospkeNamespace');
+$aerospikeCache = new AerospikeCache($aerospike, 'aerospikeNamespace');
 ```
 
 AerospikeCache uses PSR-6 caching interface for manipulation with the data.  
