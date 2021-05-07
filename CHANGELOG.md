@@ -8,6 +8,7 @@ Changelog rules:
 -->
 
 ## Unreleased
+- Add support for Symfony 5
 
 ## 0.0.1 - 2020-02-10
 - Initial version.
