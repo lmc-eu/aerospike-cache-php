@@ -9,7 +9,7 @@ Changelog rules:
 
 ## Unreleased
 
-## 0.0.2 - 2021-05-24
+## 0.1.0 - 2021-05-24
 - Add support for Symfony 5.
 
 ## 0.0.1 - 2020-02-10
